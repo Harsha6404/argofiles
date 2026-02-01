@@ -1,0 +1,23 @@
+
+apiVersion: argoproj.io/v1alpha1
+kind: Application
+metadata:
+  name: sample-app-prod
+  namespace: argocd
+spec:
+  project: hotel
+
+  source:
+    repoURL: https://github.com/Harsha6404/hotel-gitops.git
+    targetRevision: main
+    path: environments/hotel-prod
+
+  destination:
+    server: https://kubernetes.default.svc
+    namespace: hotel-prod
+
+  syncPolicy:
+    automated:
+      prune: true
+      selfHeal: true
+
