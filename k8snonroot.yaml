@@ -1,0 +1,12 @@
+apiVersion: constraints.gatekeeper.sh/v1beta1
+kind: K8sNonRoot
+metadata:
+  name: block-root-user
+spec:
+  match:
+    namespaces:
+      - hotel-dev
+      - hotel-prod
+    kinds:
+      - apiGroups: [""]
+        kinds: ["Pod"]
