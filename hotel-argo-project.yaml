@@ -1,0 +1,21 @@
+apiVersion: argoproj.io/v1alpha1
+kind: AppProject
+metadata:
+  name: hotel
+  namespace: argocd
+spec:
+  description: Hotel DevSecOps project
+
+  sourceRepos:
+    - https://github.com/Harsha6404/hotel-gitops.git
+
+  destinations:
+    - namespace: hotel-dev
+      server: https://kubernetes.default.svc
+    - namespace: hotel-prod
+      server: https://kubernetes.default.svc
+
+  clusterResourceWhitelist:
+    - group: ""
+      kind: Namespace
+
